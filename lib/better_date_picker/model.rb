@@ -18,7 +18,7 @@ module BetterDatePicker
         self.better_date_defaults ||= {}
 
         if self.better_date_fields.empty?
-          after_validation :propagate_better_date_errors
+          after_validation :propagate_better_date_errors return false unless self.errors.empty?
         end
 
         define_method "#{field}=" do |date_val|
