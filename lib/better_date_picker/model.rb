@@ -17,8 +17,12 @@ module BetterDatePicker
         self.better_date_fields ||= []
         self.better_date_defaults ||= {}
 
-        if self.better_date_fields.empty? 
-          before_save :propagate_better_date_errors
+        if self.better_date_fields.empty?
+          puts "*************************************************************************"
+          Rails.logger.debug "#{self}"
+          Rails.logger.debug "#{self.better_date_fields}"
+          puts "*************************************************************************" 
+          after_validation :propagate_better_date_errors
         end
 
         define_method "#{field}=" do |date_val|
