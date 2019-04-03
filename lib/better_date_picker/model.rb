@@ -16,9 +16,13 @@ module BetterDatePicker
       def better_date_picker(field, options = {})
         self.better_date_fields ||= []
         self.better_date_defaults ||= {}
-
-        if self.better_date_fields.empty?
-          before_validation :propagate_better_date_errors
+        included do
+          # extend ClassMethods
+          # class_attribute :better_date_fields
+          # class_attribute :better_date_defaults
+          if self.better_date_fields.empty?
+            before_validation :propagate_better_date_errors
+          end
         end
 
         define_method "#{field}=" do |date_val|
