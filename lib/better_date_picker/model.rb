@@ -22,7 +22,7 @@ module BetterDatePicker
           Rails.logger.debug "#{self}"
           Rails.logger.debug "#{self.better_date_fields}"
           puts "*************************************************************************" 
-          after_validation :propagate_better_date_errors
+          after_validation_on_create :propagate_better_date_errors
         end
 
         define_method "#{field}=" do |date_val|
